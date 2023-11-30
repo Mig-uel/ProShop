@@ -1,10 +1,15 @@
+import { Container } from 'react-bootstrap'
 import Header from './components/header.component'
 
 function App() {
   return (
     <>
       <Header />
-      <h1>Welcome to ProShop!</h1>
+      <main className='py-3'>
+        <Container>
+          <h1>Welcome to ProShop!</h1>
+        </Container>
+      </main>
     </>
   )
 }

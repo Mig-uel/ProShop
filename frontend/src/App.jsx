@@ -1,5 +1,6 @@
 import { Container } from 'react-bootstrap'
 import Header from './components/header.component'
+import Footer from './components/footer.component'
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
           <h1>Welcome to ProShop!</h1>
         </Container>
       </main>
+      <Footer />
     </>
   )
 }

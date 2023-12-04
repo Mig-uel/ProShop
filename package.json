@@ -1,0 +1,18 @@
+{
+  "name": "ProShop",
+  "version": "1.0.0",
+  "description": "eCommerce application built with the MERN stack",
+  "main": "server.js",
+  "repository": "https://github.com/Mig-uel/ProShop.git",
+  "author": "Miguel <35431824+Mig-uel@users.noreply.github.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon backend/server"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

@@ -7,8 +7,17 @@ export default defineConfig({
   server: {
     // proxy requests prefixed '/api' and '/uploads'
     // setting up proxy so we don't have to keep typing out full api address 'http://localhost
-    
-    '/api': 'http://localhost:5000',
-    '/uploads': 'http://localhost:5000',
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/uploads': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
 })

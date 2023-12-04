@@ -1,13 +1,12 @@
-import { useParams, Link } from 'react-router-dom'
+import { useState } from 'react'
+import { useLoaderData } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
 import Rating from '../components/rating.component'
 
-import products from '../products'
-
 const ProductScreen = () => {
-  const { id: productID } = useParams()
-  const product = products.find((p) => p._id === productID)
+  const [product, setProduct] = useState(useLoaderData())
 
   return (
     <>
@@ -50,7 +49,9 @@ const ProductScreen = () => {
                 <Row>
                   <Col>Status:</Col>
                   <Col>
-                    <strong>
+                    <strong
+                      style={{ color: product.countInStock ? 'green' : 'red' }}
+                    >
                       {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
                     </strong>
                   </Col>

@@ -9,15 +9,18 @@ import {
 
 import App from './App.jsx'
 import Home from './screens/home.screen.jsx'
+import ProductScreen from './screens/product.screen.jsx'
+
+// loaders
+import fetchProducts from './loaders/products.loader.js'
 
 import './assets/styles/bootstrap.custom.css'
 import './assets/styles/index.css'
-import ProductScreen from './screens/product.screen.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
-      <Route index={true} path='/' element={<Home />} />
+      <Route index={true} path='/' element={<Home />} loader={fetchProducts} />
       <Route path='product/:id' element={<ProductScreen />} />
     </Route>
   )

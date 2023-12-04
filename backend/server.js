@@ -2,9 +2,12 @@ const express = require('express')
 const dotenv = require('dotenv')
 const morgan = require('morgan')
 
+const connectDB = require('./config/db')
 const products = require('./data/products')
 
 dotenv.config()
+connectDB() // connect to mongodb
+
 const app = express()
 const port = process.env.PORT || 5000
 const env = process.env.NODE_ENV

@@ -13,6 +13,7 @@ import ProductScreen from './screens/product.screen.jsx'
 
 // loaders
 import fetchProducts from './loaders/products.loader.js'
+import fetchProduct from './loaders/product.loader.js'
 
 import './assets/styles/bootstrap.custom.css'
 import './assets/styles/index.css'
@@ -21,7 +22,11 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
       <Route index={true} path='/' element={<Home />} loader={fetchProducts} />
-      <Route path='product/:id' element={<ProductScreen />} />
+      <Route
+        path='product/:id'
+        element={<ProductScreen />}
+        loader={fetchProduct}
+      />
     </Route>
   )
 )

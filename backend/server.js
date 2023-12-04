@@ -1,5 +1,6 @@
 const express = require('express')
 const dotenv = require('dotenv')
+const morgan = require('morgan')
 
 const products = require('./data/products')
 
@@ -7,6 +8,9 @@ dotenv.config()
 const app = express()
 const port = process.env.PORT || 5000
 const env = process.env.NODE_ENV
+
+// middleware
+app.use(morgan('dev')) // <--- HTTP request logger using morgan
 
 // all products
 app.get('/api/products', (req, res) => {

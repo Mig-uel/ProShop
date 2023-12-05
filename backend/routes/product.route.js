@@ -11,8 +11,10 @@ router.get(
     const products = await Product.find({})
 
     if (products) return res.json(products)
-
-    res.status(404).json({ message: 'Could not fetch products' })
+    else {
+      res.status(404)
+      throw new Error('Could not fetch products')
+    }
   })
 )
 
@@ -25,8 +27,10 @@ router.get(
     const product = await Product.findById(id)
 
     if (product) return res.json(product)
-
-    res.status(404).json({ message: 'Product not found' })
+    else {
+      res.status(404)
+      throw new Error('Product not found')
+    }
   })
 )
 

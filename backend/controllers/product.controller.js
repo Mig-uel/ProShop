@@ -22,11 +22,12 @@ const getProductById = asyncHandler(async (req, res) => {
 
   const product = await Product.findById(id)
 
-  if (product) return res.json(product)
-  else {
+  if (!product) {
     res.status(404)
     throw new Error('Product not found')
   }
+
+  res.status(200).json(product)
 })
 
 // could use try/catch instead of asyncHandler wrapper

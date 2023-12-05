@@ -1,37 +1,16 @@
 const express = require('express')
-const asyncHandler = require('../middleware/asyncHandler.middleware')
-const Product = require('../models/product.model')
+
+const {
+  getProducts,
+  getProductById,
+} = require('../controllers/product.controller')
 
 const router = express.Router()
 
 // all products
-router.get(
-  '/',
-  asyncHandler(async (req, res) => {
-    const products = await Product.find({})
-
-    if (products) return res.json(products)
-    else {
-      res.status(404)
-      throw new Error('Could not fetch products')
-    }
-  })
-)
+router.get('/', getProducts) // route func in controller folder
 
 // single product
-router.get(
-  '/:id',
-  asyncHandler(async (req, res) => {
-    const { id } = req.params
-
-    const product = await Product.findById(id)
-
-    if (product) return res.json(product)
-    else {
-      res.status(404)
-      throw new Error('Product not found')
-    }
-  })
-)
+router.get('/:id', getProductById) // route func in controller folder
 
 module.exports = router

@@ -4,6 +4,7 @@ const morgan = require('morgan')
 
 const connectDB = require('./config/db')
 const productRoutes = require('./routes/product.route')
+const userRoutes = require('./routes/user.route')
 const {
   notFound,
   errorHandler,
@@ -19,6 +20,7 @@ const env = process.env.NODE_ENV
 // middleware
 app.use(morgan('dev')) // <--- HTTP request logger using morgan
 app.use('/api/products', productRoutes) // defines the routes for the /api/products path
+app.use('/api/users', userRoutes) // defines the routes for the /api/users path
 
 // error handling middleware
 app.use(notFound)

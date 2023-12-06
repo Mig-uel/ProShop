@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
 import Rating from '../components/rating.component'
+import Loader from '../components/loader.component'
 
 const ProductScreen = () => {
   const { id } = useParams()
@@ -17,7 +18,7 @@ const ProductScreen = () => {
   return (
     <>
       {isLoading ? (
-        <h2>Loading...</h2>
+        <Loader />
       ) : isError ? (
         <h3>{error?.data?.message || error.error}</h3>
       ) : (

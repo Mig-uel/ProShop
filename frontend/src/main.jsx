@@ -10,6 +10,7 @@ import {
 import App from './App.jsx'
 import Home from './screens/home.screen.jsx'
 import ProductScreen from './screens/product.screen.jsx'
+import CartScreen from './screens/cart.screen.jsx'
 
 // redux/state
 import { Provider } from 'react-redux'
@@ -21,8 +22,9 @@ import './assets/styles/index.css'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
-      <Route index={true} path='/' element={<Home />} />
+      <Route index={true} element={<Home />} />
       <Route path='product/:id' element={<ProductScreen />} />
+      <Route path='cart' element={<CartScreen />} />
     </Route>
   )
 )

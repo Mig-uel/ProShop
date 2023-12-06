@@ -2,8 +2,10 @@ import { useGetSingleProductQuery } from '../redux/slices/productsApi.slice'
 import { Link, useParams } from 'react-router-dom'
 
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
+
 import Rating from '../components/rating.component'
 import Loader from '../components/loader.component'
+import Message from '../components/message.component'
 
 const ProductScreen = () => {
   const { id } = useParams()
@@ -20,7 +22,9 @@ const ProductScreen = () => {
       {isLoading ? (
         <Loader />
       ) : isError ? (
-        <h3>{error?.data?.message || error.error}</h3>
+        <Message variant='danger'>
+          {error?.data?.message || error.error}
+        </Message>
       ) : (
         <>
           <Link className='btn btn-light my-3' to='/'>

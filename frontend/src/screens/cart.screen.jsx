@@ -1,4 +1,4 @@
-import { addToCart } from '../redux/slices/cart.slice'
+import { addToCart, removeFromCart } from '../redux/slices/cart.slice'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
@@ -12,10 +12,9 @@ const CartScreen = () => {
   const cart = useSelector((state) => state.cart)
   const { cartItems, itemsPrice, shippingPrice, taxPrice, totalPrice } = cart
 
-  const addToCartHandler = (item, qty) => {
-    dispatch(addToCart({ ...item, qty }))
-  }
-
+  const addToCartHandler = (item, qty) => dispatch(addToCart({ ...item, qty }))
+  const removeFromCartHandler = (item) => dispatch(removeFromCart(item))
+  const checkoutHandler = () => navigate('/login?redirect=/shipping')
   return (
     <Row>
       <Col md={8}>
@@ -50,7 +49,11 @@ const CartScreen = () => {
                     </Form.Control>
                   </Col>
                   <Col md={2}>
-                    <Button type='button' variant='light'>
+                    <Button
+                      type='button'
+                      variant='light'
+                      onClick={() => removeFromCartHandler(item)}
+                    >
                       <FaTrash />
                     </Button>
                   </Col>
@@ -77,6 +80,7 @@ const CartScreen = () => {
                   type='button'
                   className='btn-block'
                   disabled={cartItems.length === 0}
+                  onClick={checkoutHandler}
                 >
                   Proceed to Checkout
                 </Button>

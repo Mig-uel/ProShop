@@ -11,10 +11,6 @@ import App from './App.jsx'
 import Home from './screens/home.screen.jsx'
 import ProductScreen from './screens/product.screen.jsx'
 
-// loaders
-import fetchProducts from './loaders/products.loader.js'
-import fetchProduct from './loaders/product.loader.js'
-
 // redux/state
 import { Provider } from 'react-redux'
 import store from './redux/store.redux'
@@ -25,12 +21,8 @@ import './assets/styles/index.css'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
-      <Route index={true} path='/' element={<Home />} loader={fetchProducts} />
-      <Route
-        path='product/:id'
-        element={<ProductScreen />}
-        loader={fetchProduct}
-      />
+      <Route index={true} path='/' element={<Home />} />
+      <Route path='product/:id' element={<ProductScreen />} />
     </Route>
   )
 )

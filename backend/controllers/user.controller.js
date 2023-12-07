@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken')
 const asyncHandler = require('../middleware/asyncHandler.middleware')
 const User = require('../models/user.model')
 
@@ -6,18 +7,29 @@ const User = require('../models/user.model')
 // @access  Public
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body
-  console.log(email, password)
 
   const user = await User.findOne({ email })
 
-  if (user && (await user.matchPassword(password)))
+  if (user && (await user.matchPassword(password))) {
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+      expiresIn: '30d',
+    })
+
+    // set jwt as a HTTP-Only cookie
+    res.cookie('jwt', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV !== 'development',
+      sameSite: 'strict',
+      maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+    })
+
     res.json({
       _id: user._id,
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
     })
-  else {
+  } else {
     res.status(401)
     throw new Error('Invalid email or password')
   }

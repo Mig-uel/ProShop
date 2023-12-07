@@ -18,6 +18,8 @@ const port = process.env.PORT || 5000
 const env = process.env.NODE_ENV
 
 // middleware
+app.use(express.json()) //body parser - raw json
+app.use(express.urlencoded({ extended: true }))
 app.use(morgan('dev')) // <--- HTTP request logger using morgan
 app.use('/api/products', productRoutes) // defines the routes for the /api/products path
 app.use('/api/users', userRoutes) // defines the routes for the /api/users path
